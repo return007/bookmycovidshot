@@ -70,6 +70,11 @@
                     <input type="text" class="form-control" id="name-id" placeholder="Your name">
                 </div>
                 <div class="form-group">
+                    <label for="age-id">Age <span class="mandatory-field">*</span></label>
+                    <input type="text" class="form-control" id="age-id" placeholder="Your age">
+                    <small id="email-help" class="form-text text-muted">We understand that its a secret, but we have to use it to check for availability of vaccine.</small>
+                </div>
+                <div class="form-group">
                     <label for="date-id">Preferred date range</label>
                     <input type="date" class="form-control" id="start-date-id" placeholder="Start date">
                     <input type="date" class="form-control" id="end-date-id" placeholder="End date">
@@ -96,7 +101,7 @@
                         <option value="covishield">Covishield</option>
                         <option value="covaxin">Covaxin</option>
                     </select>
-                    <small id="vaccine-help" class="form-text text-muted">As of now, only a few private hospitals help you choose vaccine beforehand.</small>
+                    <small id="vaccine-help" class="form-text text-muted">As of now, only a few private hospitals let you choose vaccine beforehand.</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
