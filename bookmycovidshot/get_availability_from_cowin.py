@@ -42,7 +42,8 @@ def get_availability(age, pin_codes, start_date_str='',
                     start_timing = datetime.datetime.strptime(dt_str, "%d-%m-%Y %I:%M%p")
                     if start_timing > datetime.datetime.today() and session['min_age_limit'] <= given_age and \
                             (vaccine == 'any' or vaccine == session['vaccine']) and \
-                            (datetime.datetime.strptime(session['date'], "%d-%m-%Y") <= end_date):
+                            (datetime.datetime.strptime(session['date'], "%d-%m-%Y") <= end_date) and \
+                            session['available_capacity'] > 0:
                         covid_center_details['center_name'] = covid_center['name']
                         covid_center_details['date'] = session['date']
                         covid_center_details['slots'] = session['slots']
