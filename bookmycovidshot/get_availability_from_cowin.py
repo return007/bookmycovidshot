@@ -57,4 +57,4 @@ def get_availability(age, pin_codes, start_date_str='',
     return shot_details
 
 
-get_availability(age = 45, pin_codes=[333504],start_date_str='01-05-2021',end_date_str='05-05-2021')
+#get_availability(age = 45, pin_codes=[333504],start_date_str='01-05-2021',end_date_str='05-05-2021')
