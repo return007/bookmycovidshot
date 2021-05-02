@@ -2,7 +2,6 @@ import boto3
 
 
 def insert_user_data_to_db(email_address, age, pin_codes, start_date='', end_date='', fee_type='', vaccine=''):
-    print(type(pin_codes))
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Vaccination_Details_Table')
     response = table.put_item(
@@ -20,4 +19,4 @@ def insert_user_data_to_db(email_address, age, pin_codes, start_date='', end_dat
     print(response)
 
 
-insert_user_data_to_db(email_address="kumar@gmail.com", age=50, pin_codes={560042}, vaccine='')
+#insert_user_data_to_db(email_address="kumar@gmail.com", age=50, pin_codes={560042}, vaccine='')
