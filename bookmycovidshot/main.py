@@ -1,7 +1,9 @@
 from util import is_empty
-
+from insert_to_table import insert_user_data_to_db
 from flask import Flask, render_template, request
-
+from apscheduler.schedulers.background import BackgroundScheduler
+from check_availability_periodically import check_availability_for_db
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 """
@@ -35,15 +37,19 @@ def submit():
     if should_error:
         return error_msg, 400
 
-    email    = form_data.get("email")
-    age      = form_data.get("age")
-    pincode  = form_data.get("pincode")
+    email = form_data.get("email")
+    age = int(form_data.get("age"))
+    pincode = form_data.get("pincode")
     username = form_data.get("username", "User")
 
-    # TODO: Decide start date (should be today, if not provided)
     start_date = form_data.get("start_date")
-    # TODO: Decide end date (should be infinite, if not provided)
+    if not start_date:
+        start_date = datetime.today().strftime('%Y-%m-%d')
+
     end_date = form_data.get("end_date")
+
+    if not end_date:
+        end_date = (datetime.today() + timedelta(days=365)).strftime('%Y-%m-%d')
 
     cvc_type = form_data.get("cvc_type", "any")
     if cvc_type not in ("any", "govt", "pvt"):
@@ -55,8 +61,11 @@ def submit():
         should_error = True
         error_msg = "Hey, please don't play around with the inputs you lil piece of shit"
 
+    pincode_set = set(pincode.split(";"))
     if should_error:
         return error_msg, 400
+
+    insert_user_data_to_db(email, age, pincode_set, start_date=start_date, end_date=end_date, fee_type=cvc_type, vaccine=vaccine_choice)
 
     return "Email ID: %s" % email
 
@@ -65,6 +74,12 @@ def submit():
 def alert():
     return render_template('alert.html')
 
+sched = BackgroundScheduler()
+sched.add_job(check_availability_for_db,'cron', minute='*')
+sched.start()
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5001)
+
+

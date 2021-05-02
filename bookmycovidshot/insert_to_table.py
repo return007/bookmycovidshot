@@ -16,7 +16,5 @@ def insert_user_data_to_db(email_address, age, pin_codes, start_date='', end_dat
         }
     )
 
-    print(response)
-
 
 #insert_user_data_to_db(email_address="kumar@gmail.com", age=50, pin_codes={560042}, vaccine='')
