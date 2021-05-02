@@ -19,7 +19,7 @@ def check_availability_for_db():
                 continue
             else:
                 send_email_update(shot_details, [item['email_address']])
-                #delete_after_sending_email(table, email_address=item['email_address'])
+                delete_after_sending_email(table, email_address=item['email_address'])
         except:
             pass
 
