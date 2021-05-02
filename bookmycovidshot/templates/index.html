@@ -8,6 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karma&display=swap" rel="stylesheet">
     <style>
         span.mandatory-field {
             color: red;
@@ -40,72 +43,56 @@
             margin: 3px 0 10px 7px;
             font-size: 10px;
         }
+        footer {
+            margin-top: 10px;
+        }
+        .banner-art {
+              /* Add the blur effect */
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+            width: 100%;
+            position: relative;
+            background-image: linear-gradient( rgb(130 130 130 / 76%), rgb(0 0 0 / 76%) ), url("{{ url_for('static', filename='banner.jpg') }}");
+            height: 50vh;
+            background-size: cover;
+            background-position: top;
+        }
+        .banner-heading {
+            position: absolute;
+            top: 45%;
+            left: 25px;
+            color: #fff;
+            word-wrap: break-word;
+        }
+        * {
+            font-family: 'Karma';
+        }
+        hr {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #register {
+            padding-top: 35px;
+        }
+        #why {
+            padding-top: 35px;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron text-center">
-                <h2>BookMyCovidShot</h2>
-                <p>Get notified when the vaccine arrives!</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-            <form action="/submit" method="POST">
-                <div class="form-group">
-                    <label for="email-id">Email address <span class="mandatory-field">*</span></label>
-                    <input type="email" class="form-control" id="email-id" aria-describedby="email-help" placeholder="Enter email ID" name="email" required>
-                    <small id="email-help" class="form-text text-muted">We'll notify you on this Email ID.</small>
-                </div>
-                <div class="form-group">
-                    <label for="name-id">Name</label>
-                    <input type="text" class="form-control" id="name-id" placeholder="Your name" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="age-id">Age <span class="mandatory-field">*</span></label>
-                    <input type="text" class="form-control" id="age-id" placeholder="Your age" name="age" required>
-                    <small id="email-help" class="form-text text-muted">We understand that its a secret, but we have to use it to check for availability of vaccine.</small>
-                </div>
-                <div class="form-group">
-                    <label for="date-id">Preferred date range</label>
-                    <input type="date" class="form-control" id="start-date-id" placeholder="Start date" name="start_date">
-                    <input type="date" class="form-control" id="end-date-id" placeholder="End date" name="end_date">
-                </div>
-                <div class="form-group">
-                    <label for="pincode-id">Preferred area pincode(s) <span class="mandatory-field">*</span></label>
-                    <div id="tags">
-                        <input type="text" class="form-control" placeholder="Enter a pincode, type a comma to add more">
-                    </div>
-                    <input type="hidden" value="" id="pincode-id" name="pincode" required>
-                </div>
-                <div class="form-group">
-                    <label for="cvc-id">Vaccination center type</label>
-                    <select class="custom-select" id="cvc-id" name="cvc_type">
-                        <option value="any" selected>Any</option>
-                        <option value="govt">Government hospital (free)</option>
-                        <option value="pvt">Private hospital (paid)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="vaccine-id">Vaccine preference</label>
-                    <select class="custom-select" id="vaccine-id" aria-describedby="vaccine-help" name="vaccine_choice">
-                        <option value="any" selected>Any</option>
-                        <option value="covishield">Covishield</option>
-                        <option value="covaxin">Covaxin</option>
-                    </select>
-                    <small id="vaccine-help" class="form-text text-muted">As of now, only a few private hospitals let you choose vaccine beforehand.</small>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>
-<script>
 
+<div class="container">
+    {% include 'navbar.html' %}
+    {% include 'banner.html' %}
+    <hr>
+    {% include 'why.html' %}
+    <hr>
+    {% include 'register.html' %}
+    {% include 'footer.html' %}
+</div>
+
+<script>
 $('#tags input')
 .on('focusout', function() {
     let currentPincode = this.value.replace(/[^0-9]/g, ''); // allowed characters list
