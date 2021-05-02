@@ -9,8 +9,8 @@ def get_availability(age, pin_codes, start_date_str='',
     if start_date_str == '':
         start_date_str = datetime.datetime.today().strftime('%d-%m-%Y')
 
-    query_today = datetime.datetime.today().strftime('%d-%m-%Y')
-    date_today = datetime.datetime.strptime(query_today, "%d-%m-%Y")
+    query_date = datetime.datetime.today().strftime('%d-%m-%Y')
+    date_today = datetime.datetime.strptime(query_date, "%d-%m-%Y")
     start_date = datetime.datetime.strptime(start_date_str, "%d-%m-%Y")
     end_date = datetime.datetime.today()
 
@@ -20,14 +20,14 @@ def get_availability(age, pin_codes, start_date_str='',
             print("We are past the end date.")
             return
     if start_date > date_today:
-        query_today = start_date_str
+        query_date = start_date_str
     shot_details = []
     covid_center_details = {}
     for pin_code in pin_codes:
         try:
             r = requests.get \
                 ('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={0}&date={1}'.
-                 format(pin_code,query_today), timeout=1)
+                 format(pin_code,query_date), timeout=1)
         except requests.exceptions.Timeout as e:
             print(e)
         resp_json = json.loads(r.text)
