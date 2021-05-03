@@ -52,12 +52,12 @@ def submit():
         end_date = (datetime.today() + timedelta(days=365)).strftime('%Y-%m-%d')
 
     cvc_type = form_data.get("cvc_type", "any")
-    if cvc_type not in ("any", "govt", "pvt"):
+    if cvc_type not in ("any", "Free", "Paid"):
         should_error = True
         error_msg = "Hey, please don't play around with the inputs you lil piece of shit"
 
     vaccine_choice = form_data.get("vaccine_choice", "any")
-    if vaccine_choice not in ("any", "covishield", "covaxin"):
+    if vaccine_choice not in ("any", "COVISHIELD", "COVAXIN"):
         should_error = True
         error_msg = "Hey, please don't play around with the inputs you lil piece of shit"
 
