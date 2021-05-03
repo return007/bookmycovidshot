@@ -3,6 +3,13 @@ import json
 import datetime
 
 
+def slots_to_str(session_slots):
+    slots_str = ''
+    for slot in session_slots:
+        slots_str = slots_str + slot + '\n'
+    return slots_str
+
+
 def get_availability(age, pin_codes, start_date_str='',
                      end_date_str='', fee_type='',vaccine=''):
 
@@ -46,7 +53,7 @@ def get_availability(age, pin_codes, start_date_str='',
                             session['available_capacity'] > 0:
                         covid_center_details['center_name'] = covid_center['name']
                         covid_center_details['date'] = session['date']
-                        covid_center_details['slots'] = session['slots']
+                        covid_center_details['slots'] = slots_to_str(session['slots'])
                         shot_details.append(covid_center_details)
                         covid_center_details = {}
 
