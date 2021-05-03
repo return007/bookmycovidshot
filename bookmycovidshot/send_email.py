@@ -12,7 +12,7 @@ def send_email_update(shot_details, to_email):
     body = (
         '<h3>Hi user,</h3>'
         '<p style="font-size: 14px">We have found the following vaccine available per your preferences. Please refer to the following table:</p>'
-        '<table style="font-size: 14px; border: 1px solid black; border-collapse: collapse; width: 50%;">'
+        '<table style="font-size: 14px; border: 1px solid black; border-collapse: collapse; width: 80%;">'
         '<tr style="border: 1px solid black;">'
         '<th style="border: 1px solid black; padding: 5px;">S. No.</th>'
         '<th style="border: 1px solid black; padding: 5px;">Center Name</th>'

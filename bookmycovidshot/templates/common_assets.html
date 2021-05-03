@@ -17,8 +17,81 @@
 
 <style>
 footer {
-    margin-top: 10px;
+    margin-top: 20px;
     flex-shrink: none;
+}
+footer a {
+    color: #fff;
+    font-size: 14px;
+    transition-duration: 0.2s;
+}
+footer a:hover {
+    color: #FA944B;
+    text-decoration: none;
+}
+footer ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left: 0 !important;
+    padding: 0;
+}
+footer .footer-middle {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+footer ul.social-network li {
+    display: inline;
+    margin: 0 5px;
+}
+footer .social-network a.ico-github:hover {
+    background-color: #a5a5a5;
+}
+footer .social-network a.ico-mail:hover {
+    background-color: #d48011;
+}
+footer .social-network a.ico-github:hover i, .social-network a.ico-mail:hover i {
+    color: #fff;
+}
+footer .social-network a.socialIcon:hover, .socialHoverClass {
+    color: #44BCDD;
+}
+footer .social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 0 auto;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
+footer .social-circle li i {
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+}
+footer .social-circle li a:hover i, .triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+}
+footer .social-circle i {
+    color: #595959;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
+footer .social-network a {
+    background-color: #F9F9F9;
 }
 * {
     font-family: 'Karma';
