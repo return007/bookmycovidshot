@@ -9,7 +9,7 @@ server.ehlo()
 server.login(gmail_user, gmail_password)
 
 
-def send_email_update(shot_details, to_email, retry=2):
+def send_email_update(shot_details, to_email, retry=1):
     sent_from = gmail_user
     subject = 'Covid19 vaccine slot available for you!'
     body = (
@@ -61,8 +61,11 @@ Subject: %s
     except Exception as e:
         print(e)
         print('Something went wrong...')
+        if retry == 0:
+            return
         server.ehlo()
         server.login(gmail_user, gmail_password)
+        send_email_update(shot_details, to_email, retry-1)
 
 
 
