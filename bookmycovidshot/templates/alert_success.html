@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BookMyCovidShot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'common_assets.html' %}
+    <style>
+        #alert-success {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    {% include 'navbar.html' %}
+    <div class="row" id="alert-success">
+        <div class="col-md-12">
+            <h2>Hi {{username}},</h2>
+            <h6>
+                We have taken a note of your preference and will keep you posted when the vaccine next arrives.
+                We wish you and your loved ones a great health. Hope you get vaccinated timely!
+            </h6>
+            <h6>If you like this service, please feel free to share it with your friends.</h6>
+            <br>
+            <h6>Your caring buddies,</h6>
+            <h6>@BookMyCovidShot</h6>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+
+</body>
+</html>

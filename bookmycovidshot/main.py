@@ -40,7 +40,7 @@ def submit():
     email = form_data.get("email")
     age = int(form_data.get("age"))
     pincode = form_data.get("pincode")
-    username = form_data.get("username", "User")
+    username = form_data.get("username", "user")
 
     start_date = form_data.get("start_date")
     if not start_date:
@@ -67,12 +67,8 @@ def submit():
 
     insert_user_data_to_db(email, age, pincode_set, start_date=start_date, end_date=end_date, fee_type=cvc_type, vaccine=vaccine_choice)
 
-    return "Email ID: %s" % email
+    return render_template("alert_success.html", username=username)
 
-
-@app.route('/alert')
-def alert():
-    return render_template('alert.html')
 
 sched = BackgroundScheduler()
 sched.add_job(check_availability_for_db,'cron', minute='*')
