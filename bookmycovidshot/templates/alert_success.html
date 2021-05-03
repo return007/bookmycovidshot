@@ -5,6 +5,14 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Schedule your appointment and get notified when Covid19 vaccine becomes available next">
+    <meta name="keywords" content="covid, covid19, vaccine, vaccination, alert, notify, cowin, india">
+    <meta property="og:title" content="BookMyCovidShot">
+    <meta property="og:url" content="http://bookmycovidshot.com">
+    <meta property="og:description" content="Schedule your appointment and get notified when Covid19 vaccine becomes available next">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1608422050828-485141c98429?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=622&q=80">
+
     {% include 'common_assets.html' %}
     <style>
         #alert-success {
@@ -20,7 +28,7 @@
     {% include 'navbar.html' %}
     <div class="row" id="alert-success">
         <div class="col-md-12">
-            <h2>Hi {{username}},</h2>
+            <h2>Hi {{username}},</h2><br>
             <h6>
                 We have taken a note of your preference and will keep you posted when the vaccine next arrives.
                 We wish you and your loved ones a great health. Hope you get vaccinated timely!
@@ -29,6 +37,8 @@
             <br>
             <h6>Your caring buddies,</h6>
             <h6>@BookMyCovidShot</h6>
+            <h6><a href="mailto:bookmycovid19shot@gmail.com">bookmycovid19shot@gmail.com</a></h6>
+            <h6><a href="http://bookmycovidshot.com">http://bookmycovidshot.com</a></h6>
         </div>
     </div>
     {% include 'footer.html' %}
