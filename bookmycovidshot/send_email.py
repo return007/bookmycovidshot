@@ -1,12 +1,15 @@
 import smtplib
 import os
 
+gmail_user = 'bookmycovid19shot@gmail.com'
+gmail_password = os.environ["GMAIL_PASSWORD"]
 
-def send_email_update(shot_details, to_email):
-    print(shot_details)
-    gmail_user = 'bookmycovid19shot@gmail.com'
-    gmail_password = os.environ["GMAIL_PASSWORD"]
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+server.ehlo()
+server.login(gmail_user, gmail_password)
 
+
+def send_email_update(shot_details, to_email, retry=2):
     sent_from = gmail_user
     subject = 'Covid19 vaccine slot available for you!'
     body = (
@@ -53,13 +56,13 @@ Subject: %s
 """ % (sent_from, ", ".join(to_email), subject, body)
 
     try:
-        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        server.ehlo()
-        server.login(gmail_user, gmail_password)
         server.sendmail(sent_from, to_email, email_text)
-        server.close()
         print('Email sent!')
     except Exception as e:
         print(e)
         print('Something went wrong...')
+        server.ehlo()
+        server.login(gmail_user, gmail_password)
+
+
 
