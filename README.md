@@ -14,7 +14,10 @@ you with this.  It addresses this big pain point.
 https://bookmycovidshot.com
 
 ## How
-<TODO>
+To schedule an alert,
+    1. Enter your email address, age and pin code(s) : mandatory
+    2. Choose preferred date range, CVC type (Free or Paid) and vaccine type, if you have any
+    3. Submit the form and wait for an alert on your email
 
 ## Maintainers
 <TODO>
