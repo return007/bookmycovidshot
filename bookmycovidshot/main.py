@@ -1,9 +1,10 @@
-from util import is_empty
-from insert_to_table import insert_user_data_to_db
 from flask import Flask, render_template, request
 from apscheduler.schedulers.background import BackgroundScheduler
-from check_availability_periodically import check_availability_for_db
 from datetime import datetime, timedelta
+
+from util import is_empty
+from insert_to_table import insert_user_data_to_db
+from check_availability_periodically import check_availability_for_db
 
 app = Flask(__name__)
 """
@@ -13,7 +14,6 @@ Flask app instance.
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -67,7 +67,8 @@ def submit():
     if should_error:
         return error_msg, 400
 
-    insert_user_data_to_db(email, age, pincode_set, start_date=start_date, end_date=end_date, fee_type=cvc_type, vaccine=vaccine_choice)
+    insert_user_data_to_db(email, age, pincode_set, start_date=start_date, end_date=end_date,
+                           fee_type=cvc_type, vaccine=vaccine_choice)
 
     return render_template("alert_success.html", username=username)
 
@@ -79,5 +80,3 @@ sched.start()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
-
-
