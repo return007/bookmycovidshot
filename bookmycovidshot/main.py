@@ -74,7 +74,7 @@ def submit():
 
 
 sched = BackgroundScheduler()
-sched.add_job(check_availability_for_db,'cron', minute='*')
+sched.add_job(check_availability_for_db,'cron', minute='*/10')
 sched.start()
 
 
