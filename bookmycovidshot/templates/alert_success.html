@@ -19,6 +19,20 @@
             margin-top: 40px;
             margin-bottom: 40px;
         }
+        #social-share {
+            margin-top: 20px;
+        }
+        #social-share .share-icon {
+            padding-left: 10px;
+            font-size: 20px;
+        }
+        #social-share #whatsapp {
+            color: green;
+        }
+        #social-share #twitter {
+            color: rgba(29,161,242,1.00);
+        }
+
     </style>
 </head>
 <body>
@@ -39,6 +53,17 @@
             <h6>@BookMyCovidShot</h6>
             <h6><a href="mailto:bookmycovid19shot@gmail.com">bookmycovid19shot@gmail.com</a></h6>
             <h6><a href="http://bookmycovidshot.com">http://bookmycovidshot.com</a></h6>
+            <h6 id="social-share">
+                Share
+                <a href="whatsapp://send?text=Hi, I have scheduled my vaccine alert at BookMyCovidShot. You can do it too at http://bookmycovidshot.com"
+                   target="_blank" id="whatsapp" class="share-icon">
+                   <i class="fa fa-whatsapp"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Hi, I have scheduled my vaccine alert at BookMyCovidShot. You can do it too at http://bookmycovidshot.com"
+                   target="_blank" id="twitter" class="share-icon">
+                   <i class="fa fa-twitter"></i>
+                </a>
+            </h6>
         </div>
     </div>
     {% include 'footer.html' %}

@@ -40,7 +40,9 @@ def submit():
     email = form_data.get("email")
     age = int(form_data.get("age"))
     pincode = form_data.get("pincode")
-    username = form_data.get("username", "user")
+    username = form_data.get("username")
+    if not username:
+        username = "user"
 
     start_date = form_data.get("start_date")
     if not start_date:
