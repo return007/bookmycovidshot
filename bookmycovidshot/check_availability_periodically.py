@@ -2,6 +2,7 @@ import boto3
 from get_availability_from_cowin import get_availability
 from delete_from_table import delete_after_sending_email
 from notifier import EmailNotifier
+from success_db_update import make_entry_to_success_db
 
 dynamodb = boto3.resource('dynamodb')
 
@@ -20,6 +21,7 @@ def check_availability_for_db():
                 continue
             else:
                 en.notify(shot_details, [item['email_address']])
+                make_entry_to_success_db(item)
                 delete_after_sending_email(table, email_address=item['email_address'])
         except:
             pass
