@@ -36,8 +36,8 @@ def get_availability(age, pin_codes, start_date_str='',
                 ('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={0}&date={1}'.
                  format(pin_code, query_date), timeout=1)
             print(r.status_code)
-        except requests.exceptions.Timeout as e:
-            print(e)
+        except Exception as e:
+            print(str(e))
         resp_json = json.loads(r.text)
         given_age = age
         for covid_center in resp_json["centers"]:
