@@ -26,6 +26,7 @@ class EmailNotifier(Notifier):
             '<tr style="border: 1px solid black;">'
             '<th style="border: 1px solid black; padding: 5px;">S. No.</th>'
             '<th style="border: 1px solid black; padding: 5px;">Center Name</th>'
+            '<th style="border: 1px solid black; padding: 5px;">Pin Code</th>'
             '<th style="border: 1px solid black; padding: 5px;">Date</th>'
             '<th style="border: 1px solid black; padding: 5px;">Slots</th>'
             '</tr>'
@@ -38,7 +39,9 @@ class EmailNotifier(Notifier):
                 "<td style='border: 1px solid black; padding: 5px;'>{}</td>"
                 "<td style='border: 1px solid black; padding: 5px;'>{}</td>"
                 "<td style='border: 1px solid black; padding: 5px;'>{}</td>"
-                "</tr>\n".format(i+1, details[i]['center_name'], details[i]['date'], details[i]['slots'])
+                "<td style='border: 1px solid black; padding: 5px;'>{}</td>"
+                "</tr>\n".format(i+1, details[i]['center_name'], details[i]['pin_code'], details[i]['date'],
+                                 details[i]['slots'])
             )
 
         body += (
