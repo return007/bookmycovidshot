@@ -3,11 +3,33 @@ import json
 import datetime
 
 
+BASE_URL = (
+    "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin"
+    "?pincode=%s&date=%s"
+)
+
+
 def slots_to_str(session_slots):
     slots_str = ''
     for slot in session_slots:
         slots_str = slots_str + slot + '\n'
     return slots_str
+
+
+def fetch_from_cowin(url):
+    try:
+        r = requests.get(
+            url,
+            headers={
+                'Origin': 'https://www.cowin.gov.in',
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+                              '(KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
+                'Referer': 'https://www.cowin.gov.in/'
+            }, timeout=1
+        )
+    except requests.exceptions.RequestException as e:
+        print(e)
+    return r.json()
 
 
 def get_availability(age, pin_codes, start_date_str='',
@@ -30,15 +52,7 @@ def get_availability(age, pin_codes, start_date_str='',
     shot_details = []
     covid_center_details = {}
     for pin_code in pin_codes:
-        try:
-            print (query_date)
-            r = requests.get \
-                ('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={0}&date={1}'.
-                 format(pin_code, query_date), timeout=2)
-            print(r.status_code)
-        except Exception as e:
-            print(str(e))
-        resp_json = json.loads(r.text)
+        resp_json = fetch_from_cowin(BASE_URL % (pin_code, query_date))
         given_age = age
         for covid_center in resp_json["centers"]:
             if len(covid_center) == 0:
