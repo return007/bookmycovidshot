@@ -34,7 +34,7 @@ def get_availability(age, pin_codes, start_date_str='',
             print (query_date)
             r = requests.get \
                 ('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode={0}&date={1}'.
-                 format(pin_code, query_date), timeout=1)
+                 format(pin_code, query_date), timeout=2)
             print(r.status_code)
         except Exception as e:
             print(str(e))
@@ -46,9 +46,12 @@ def get_availability(age, pin_codes, start_date_str='',
                 return
             if fee_type == 'any' or fee_type == covid_center['fee_type']:
                 for session in covid_center['sessions']:
-                    dt_str = session['date'] + ' '+ session['slots'][len(session['slots'])-1].split('-')[1]
-                    start_timing = datetime.datetime.strptime(dt_str, "%d-%m-%Y %I:%M%p")
-                    if start_timing > datetime.datetime.today() and session['min_age_limit'] <= given_age and \
+                    start_timing = datetime.datetime.today()
+                    if len(session['slots']) > 0:
+                        dt_str = session['date'] + ' '+ session['slots'][len(session['slots'])-1].split('-')[1]
+                        start_timing = datetime.datetime.strptime(dt_str, "%d-%m-%Y %I:%M%p")
+                    if (len(session['slots']) == 0 or start_timing > datetime.datetime.today()) and \
+                            session['min_age_limit'] <= given_age and \
                             (vaccine == 'any' or vaccine == session['vaccine']) and \
                             (datetime.datetime.strptime(session['date'], "%d-%m-%Y") <= end_date) and \
                             session['available_capacity'] > 0:
