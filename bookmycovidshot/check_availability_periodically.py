@@ -3,6 +3,7 @@ from get_availability_from_cowin import get_availability
 from delete_from_table import delete_after_sending_email
 from notifier import EmailNotifier
 from success_db_update import make_entry_to_success_db
+import traceback
 
 dynamodb = boto3.resource('dynamodb')
 
@@ -24,6 +25,7 @@ def check_availability_for_db():
                 make_entry_to_success_db(item)
                 delete_after_sending_email(table, email_address=item['email_address'])
         except:
+            print("Some error occurred {0}".format(traceback.format_exc()))
             pass
 
 #check_availability_for_db()
