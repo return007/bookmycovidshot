@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from apscheduler.schedulers.background import BackgroundScheduler
 from check_availability_periodically import check_availability_for_db
 from datetime import datetime, timedelta
-from email_service import send_email
+from notifier import EmailNotifier
 
 app = Flask(__name__)
 """
@@ -71,7 +71,8 @@ def submit():
     insert_user_data_to_db(email, age, pincode_set, start_date=start_date, end_date=end_date, fee_type=cvc_type, vaccine=vaccine_choice)
     
     
-    #send_email(email)
+    en = EmailNotifier()
+    en.acknowledge(email)
     return render_template("alert_success.html", username=username)
 
 

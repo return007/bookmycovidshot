@@ -74,3 +74,18 @@ Subject: %s
             print("Email sent to '%s'" % to)
         except Exception as e:
             print("Couldn't send email to '%s'\nException occurred: %s" % (to, e))
+    
+    def acknowledge(self,to):
+        if isinstance(to, (str, bytes)):
+            to = [to]
+        email_text = "We have received your request, we will update you once slots are available"
+        try:
+            self.server.sendmail(self.email_user, to, email_text)
+            print("Email sent to '%s'" % to)
+        except Exception as e:
+            print("Couldn't send email to '%s'\nException occurred: %s" % (to, e))
+        
+        
+        
+        
+        
