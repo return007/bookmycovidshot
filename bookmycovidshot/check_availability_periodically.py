@@ -12,7 +12,10 @@ def check_availability_for_db():
     table = dynamodb.Table('Vaccination_Details_Table')
     resp = table.scan()
     en = EmailNotifier()
+    user_cnt = 0
     for item in resp['Items']:
+        print("User number = {0}".format(user_cnt))
+        user_cnt = user_cnt + 1
         try:
             shot_details = get_availability(age=item['age'], pin_codes=item['pin_codes'],
                                             start_date_str=item['start_date'],

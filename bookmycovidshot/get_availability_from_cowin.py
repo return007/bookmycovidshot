@@ -28,6 +28,7 @@ def fetch_from_cowin(url):
                 'Referer': 'https://www.cowin.gov.in/'
             }, timeout=3
         )
+        print(r.status_code)
     except requests.exceptions.RequestException as e:
         print(e)
     return r.json()
