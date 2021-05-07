@@ -1,6 +1,7 @@
 import requests
 import json
 import datetime
+import time
 
 
 BASE_URL = (
@@ -52,6 +53,7 @@ def get_availability(age, pin_codes, start_date_str='',
     shot_details = []
     covid_center_details = {}
     for pin_code in pin_codes:
+        # Between two consecutive requests, wait for 3 seconds.
         resp_json = fetch_from_cowin(BASE_URL % (pin_code, query_date))
         given_age = age
         for covid_center in resp_json["centers"]:
@@ -75,11 +77,7 @@ def get_availability(age, pin_codes, start_date_str='',
                         shot_details.append(covid_center_details)
                         covid_center_details = {}
 
-    # if len(shot_details) == 0:
-    #     print("No vaccines data available for your age group in your area for the next seven days")
-    # for i in range(0, len(shot_details)):
-    #     print("Vaccines for your age group are available at {0} on date {1} slots available = {2}".
-    #           format(shot_details[i]['center_name'], shot_details[i]['date'], shot_details[i]['slots']))
+        time.sleep(3)
     return shot_details
 
 
