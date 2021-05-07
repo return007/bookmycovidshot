@@ -74,6 +74,7 @@ def get_availability(age, pin_codes, start_date_str='',
                         covid_center_details['center_name'] = covid_center['name']
                         covid_center_details['date'] = session['date']
                         covid_center_details['slots'] = slots_to_str(session['slots'])
+                        covid_center_details['pin_code'] = pin_code
                         shot_details.append(covid_center_details)
                         covid_center_details = {}
 
