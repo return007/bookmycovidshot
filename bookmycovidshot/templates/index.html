@@ -92,8 +92,13 @@
 <script>
 $('#tags input')
 .on('focusout', function() {
-    let currentPincode = this.value.replace(/[^0-9]/g, ''); // allowed characters list
-    if(currentPincode) {
+    let currentPincode = this.value.replace(/[^0-9]/g, '');
+    if (currentPincode != this.value) {
+        // Flush it off man, user is playing around :/
+        this.value = "";
+        currentPincode = "";
+    }
+    if(currentPincode.length == 6) {
         $(this).before('<span class="tag bg-info">' + currentPincode + '</span>');
         let pincode = $("#pincode-id").attr("value");
         if(pincode) {
@@ -103,14 +108,12 @@ $('#tags input')
             pincode = currentPincode;
         }
         $("#pincode-id").attr("value", pincode);
+        this.value = "";
     }
-    this.value = "";
 })
-.on('keyup', function(e) {
-    // comma|enter (add more keyCodes delimited with | pipe)
-    if(/(188|13)/.test(e.which)) {
-        $(this).trigger('focusout');
-    }
+.on('keyup input', function(e) {
+    // input event => so that it works on mobile as well
+    $(this).trigger('focusout');
 });
 $('#tags').on('click', '.tag', function() {
     let currentPincode = this.innerHTML;
