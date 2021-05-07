@@ -21,7 +21,11 @@ def check_availability_for_db():
             if not shot_details:
                 continue
             else:
-                en.notify(shot_details, [item['email_address']])
+                if not en.notify(shot_details, [item['email_address']]):
+                    en = EmailNotifier()
+                    if not en.notify(shot_details, [item['email_address']]):
+                        print("Retry failed too. Some thing is wrong")
+                        continue
                 make_entry_to_success_db(item)
                 delete_after_sending_email(table, email_address=item['email_address'])
         except:

@@ -75,5 +75,7 @@ Subject: %s
         try:
             self.server.sendmail(self.email_user, to, email_text)
             print("Email sent to '%s'" % to)
+            return True
         except Exception as e:
             print("Couldn't send email to '%s'\nException occurred: %s" % (to, e))
+            return False
