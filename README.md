@@ -1,5 +1,5 @@
 # bookmycovidshot
-Source code for http://bookmycovidshot.com
+Source code for https://bookmycovidshot.com
 
 ## About
 Get notified when the your nearest (and desirable) Covid19 vaccination
