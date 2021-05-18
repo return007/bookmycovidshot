@@ -11,7 +11,7 @@ doesn't notify when the vaccination is next available.  This website helps
 you with this.
 
 ## Where
-http://bookmycovidshot.com
+https://bookmycovidshot.com
 
 ## How
 To schedule an alert,
