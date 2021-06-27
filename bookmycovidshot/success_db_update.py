@@ -1,9 +1,8 @@
 import boto3
 
-dynamodb = boto3.resource('dynamodb')
-
 
 def make_entry_to_success_db(item):
+    dynamodb = boto3.resource('dynamodb')
     try:
         table = dynamodb.Table('Success_DB')
 

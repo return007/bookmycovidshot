@@ -7,6 +7,7 @@
             <i>Alert emails might get a bit delayed. Sorry for the inconvenience!</i>
         </h6>
         <form action="/submit" method="POST">
+            <fieldset disabled="disabled">
             <div class="form-group">
                 <label for="email-id">Email address <span class="mandatory-field">*</span></label>
                 <input type="email" class="form-control" id="email-id" aria-describedby="email-help" placeholder="Enter email ID" name="email" required>
@@ -51,6 +52,7 @@
                 <small id="vaccine-help" class="form-text text-muted">As of now, only a few private hospitals let you choose vaccine beforehand.</small>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </fieldset>
         </form>
     </div>
 </div>

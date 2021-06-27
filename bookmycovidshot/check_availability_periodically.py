@@ -5,10 +5,10 @@ from notifier import EmailNotifier
 from success_db_update import make_entry_to_success_db
 import traceback
 
-dynamodb = boto3.resource('dynamodb')
 
 
 def check_availability_for_db():
+    dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('Vaccination_Details_Table')
     resp = table.scan()
     en = EmailNotifier()

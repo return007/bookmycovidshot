@@ -73,9 +73,13 @@ def submit():
     return render_template("alert_success.html", username=username)
 
 
+"""
+# Stop running the Scheduled now.
+
 sched = BackgroundScheduler()
 sched.add_job(check_availability_for_db,'cron', minute='*/30')
 sched.start()
+"""
 
 
 if __name__ == '__main__':
